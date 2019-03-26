@@ -10,3 +10,11 @@
 - 티비 프로그램 (TV Shows)
 - 검색 (Search)
 - 세부정보 (Detail)
+
+## API Verbs
+
+- Now playing (Movie)
+- Upcoming (Movie)
+- Top Rated (TV, Movie)
+- Popular (TV, Movie)
+- Airing Today (TV)
