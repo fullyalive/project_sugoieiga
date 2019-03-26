@@ -8,6 +8,45 @@ const api = axios.create({
   }
 });
 
-api.get("tv/popular") // /tv/popular라고 쓰면 안된다. 여기는 상대경로를 사용한다.
+export const movieApi = {
+  nowPlaying: () => api.get("movie/now_playing"),
+  upcoming: () => api.get("movie/upcoming"),
+  topRated: () => api.get("movie/top_rated"),
+  popular: () => api.get("movie/popular"),
+  movieDetail: id =>
+    api.get(`movie/${id}`, {
+      params: {
+        append_to_response: "videos"
+      }
+    }),
+  similar: id => api.get(`movie/${id}/similar`),
+  recommendations: id => api.get(`movie/${id}/recommendations`),
+  reviews: id => api.get(`movie/${id}/reviews`),
+  search: term =>
+    api.get("search/movie", {
+      params: {
+        query: encodeURIComponent(term) // 특수문자 처리를 위한 인코딩
+      }
+    })
+};
 
-export default api;
+export const tvApi = {
+  airingToday: () => api.get("tv/airing_today"),
+  topRated: () => api.get("tv/top_rated"),
+  popular: () => api.get("tv/popular"),
+  tvDetail: id =>
+    api.get(`tv/${id}`, {
+      params: {
+        append_to_response: "videos"
+      }
+    }),
+  similar: id => api.get(`tv/${id}/similar`),
+  recommendations: id => api.get(`tv/${id}/recommendations`),
+  reviews: id => api.get(`tv/${id}/reviews`),
+  search: term =>
+    api.get("search/tv", {
+      params: {
+        query: encodeURIComponent(term) // 특수문자 처리를 위한 인코딩
+      }
+    })
+};

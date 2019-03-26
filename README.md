@@ -13,8 +13,24 @@
 
 ## API Verbs
 
-- Now playing (Movie)
-- Upcoming (Movie)
-- Top Rated (TV, Movie)
-- Popular (TV, Movie)
-- Airing Today (TV)
+**Movie**
+
+- Now playing
+- Upcoming 
+
+**TV**
+
+- Airing Today
+
+**Shared**
+
+- Top Rated
+- Popular
+- Detail
+- Similar
+- Recommendations
+- Reviews
+- Search
+
+
+
