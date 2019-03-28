@@ -12,6 +12,10 @@ const Title = styled.span`
   font-weight: 600;
 `;
 const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 125px);
+  grid-gap: 15px;
+  justify-content: space-evenly;
   margin-top: 10px;
 `;
 

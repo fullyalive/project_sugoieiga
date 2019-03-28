@@ -14,15 +14,25 @@ const TVPresenter = ({ airingToday, topRated, popular, error, loading }) =>
   ) : (
     <Container>
       {airingToday && airingToday.length > 0 && (
-        <Section title={"今日の放送"}>{airingToday.map(tv => tv.name)}</Section>
+        <Section title={"今日の放送"}>
+          {airingToday.map(tv => (
+            <span key={tv.id}>{tv.name}</span>
+          ))}
+        </Section>
       )}
       {topRated && topRated.length > 0 && (
         <Section title={"トップレートフィルム"}>
-          {topRated.map(tv => tv.name)}
+          {topRated.map(tv => (
+            <span key={tv.id}>{tv.name}</span>
+          ))}
         </Section>
       )}
       {popular && popular.length > 0 && (
-        <Section title={"人気の放送"}>{popular.map(tv => tv.name)}</Section>
+        <Section title={"人気の放送"}>
+          {popular.map(tv => (
+            <span key={tv.id}>{tv.name}</span>
+          ))}
+        </Section>
       )}
     </Container>
   );
