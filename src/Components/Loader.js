@@ -7,11 +7,11 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 `;
 
 export default () => (
   <Container>
-    <img src={loader} alt={"loading"} style={{ width: 170, height: 140 }} />
+    <img src={loader} alt={"loading"} style={{ width: 170, height: 130 }} />
   </Container>
 );

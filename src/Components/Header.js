@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { FaSearch } from "react-icons/fa";
 
-const Header = styled.header``;
+const Header = styled.header`
+  padding: 0px 15px;
+`;
 
 // ul -> List : styled-components에 의해 변경되었다
 const List = styled.ul`
   display: flex;
-  &:hover {
-    font-weight: 700;
-  }
+  justify-content: flex-end;
 `;
 
 const Item = styled.li`
@@ -32,13 +33,15 @@ export default withRouter(({ location: { pathname } }) => (
     {/* {console.log(props)} */}
     <List>
       <Item current={pathname === "/"}>
-        <ALink to="/">Movies</ALink>
+        <ALink to="/">フィルム</ALink>
       </Item>
       <Item current={pathname === "/tv"}>
-        <ALink to="/tv">TV</ALink>
+        <ALink to="/tv">放送</ALink>
       </Item>
       <Item current={pathname === "/search"}>
-        <ALink to="/search">Search</ALink>
+        <ALink to="/search">
+          <FaSearch />
+        </ALink>
       </Item>
     </List>
   </Header>
