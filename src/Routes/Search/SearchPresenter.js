@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
+import Poster from "Components/Poster";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 
@@ -48,14 +49,29 @@ const SearchPresenter = ({
         {movieResults && movieResults.length > 0 && (
           <Section title="映画検索結果">
             {movieResults.map(movie => (
-              <span key={movie.id}>{movie.title}</span>
+              <Poster
+                key={movie.id}
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date.substring(0, 4)}
+                isMovie={true}
+              />
             ))}
           </Section>
         )}
         {tvResults && tvResults.length > 0 && (
           <Section title="放送検索結果">
             {tvResults.map(tv => (
-              <span key={tv.id}>{tv.name}</span>
+              <Poster
+                key={tv.id}
+                id={tv.id}
+                imageUrl={tv.poster_path}
+                title={tv.original_title}
+                rating={tv.vote_average}
+                year={tv.first_air_date.substring(0, 4)}
+              />
             ))}
           </Section>
         )}
