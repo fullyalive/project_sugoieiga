@@ -43,7 +43,7 @@ export default class extends React.Component {
       });
     } catch {
       this.setState({
-        error: "検索結果が見つかりません　😢"
+        error: "検索結果が見つかりません 😢"
       });
     } finally {
       this.setState({ loading: false });

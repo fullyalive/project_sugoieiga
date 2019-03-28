@@ -25,7 +25,7 @@ export default class extends React.Component {
       this.setState({ airingToday, topRated, popular });
     } catch {
       this.setState({
-        error: "放送情報の読み込みに失敗しました　😢"
+        error: "放送情報の読み込みに失敗しました 😢"
       });
     } finally {
       this.setState({ loading: false });

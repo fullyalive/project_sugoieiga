@@ -36,7 +36,7 @@ export default class extends React.Component {
         : await tvApi.tvDetails(parsedId));
       console.log(result);
     } catch {
-      this.setState({ error: "情報の読み込みに失敗しました　😢" });
+      this.setState({ error: "情報の読み込みに失敗しました 😢" });
     } finally {
       this.setState({ loading: false, result });
     }

@@ -31,11 +31,11 @@ export default class extends React.Component {
         nowPlaying,
         upcoming,
         topRated,
-        popular,
-      })
+        popular
+      });
     } catch {
       this.setState({
-        error: "映画情報の読み込みに失敗しました　😢"
+        error: "映画情報の読み込みに失敗しました 😢"
       });
     } finally {
       this.setState({
