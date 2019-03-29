@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Helmet from "react-helmet"
 import loader from "Images/loader.gif";
 
 const Container = styled.div`
@@ -12,6 +13,9 @@ const Container = styled.div`
 
 export default () => (
   <Container>
+    <Helmet>
+      <title>ローディング | スゴイ映画</title>
+    </Helmet>
     <img src={loader} alt={"loading"} style={{ width: 170, height: 130 }} />
   </Container>
 );

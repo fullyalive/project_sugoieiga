@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Section from "Components/Section";
 import Poster from "Components/Poster";
 import Loader from "Components/Loader";
@@ -31,6 +32,9 @@ const SearchPresenter = ({
   updateTerm
 }) => (
   <Container>
+    <Helmet>
+      <title>検索 | スゴイ映画</title>
+    </Helmet>
     <Notification>
       <Div>일본어 또는 영어로 검색할 수 있습니다.</Div>
       <Div>日本語または英語で検索することができます。</Div>
@@ -68,7 +72,7 @@ const SearchPresenter = ({
                 key={tv.id}
                 id={tv.id}
                 imageUrl={tv.poster_path}
-                title={tv.original_title}
+                title={tv.original_name}
                 rating={tv.vote_average}
                 year={tv.first_air_date.substring(0, 4)}
               />
