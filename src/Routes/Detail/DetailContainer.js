@@ -13,7 +13,6 @@ export default class extends React.Component {
       error: null,
       loading: true,
       isMovie: pathname.includes("/movie/")
-      // isTv: pathname.includes("/tv/")
     };
   }
 
@@ -32,9 +31,8 @@ export default class extends React.Component {
     let result = null;
     try {
       ({ data: result } = isMovie
-        ? await movieApi.movieDetails(parsedId)
-        : await tvApi.tvDetails(parsedId));
-      console.log(result);
+        ? await movieApi.getDetails(id)
+        : await tvApi.getDetails(id));
     } catch {
       this.setState({ error: "情報の読み込みに失敗しました 😢" });
     } finally {

@@ -11,7 +11,7 @@ const Image = styled.div`
   background-image: url(${props => props.bgUrl});
   height: 180px;
   background-size: cover;
-  border-radius: 4px;
+  border-radius: 3px;
   background-position: center center;
   transition: opacity 0.1s linear;
 `;
