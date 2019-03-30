@@ -8,7 +8,7 @@ export default class extends React.Component {
     const {
       location: { pathname }
     } = props;
-
+    console.log(props);
     this.state = {
       details: null,
       similar: null,
@@ -31,7 +31,9 @@ export default class extends React.Component {
       return push("/");
     }
     const { isMovie } = this.state;
-    let details, similar, recommendations = null;
+    let details,
+      similar,
+      recommendations = null;
     try {
       ({ data: details } = isMovie
         ? await movieApi.getDetails(id)
@@ -47,13 +49,19 @@ export default class extends React.Component {
     } catch {
       this.setState({ error: "情報の読み込みに失敗しました 😢" });
     } finally {
-      this.setState({ loading: false, details, similar, recommendations });
+      this.setState({
+        loading: false,
+        details,
+        similar,
+        recommendations
+      });
     }
   }
 
   render() {
     const { details, similar, recommendations, error, loading } = this.state;
-    console.log(details, 111, similar, 111, recommendations, 111)
+    console.log(similar);
+    console.log(recommendations);
     return (
       <DetailPresenter
         details={details}

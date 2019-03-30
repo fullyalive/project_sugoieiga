@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
+import { MainSection } from "Components/Section";
+import { BigPoster } from "Components/Poster";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 
@@ -20,9 +20,9 @@ const TVPresenter = ({ airingToday, topRated, popular, error, loading }) =>
         <title>放送リスト | スゴイ映画</title>
       </Helmet>
       {airingToday && airingToday.length > 0 && (
-        <Section title={"今日の放送"}>
+        <MainSection title={"今日の放送"}>
           {airingToday.map(tv => (
-            <Poster
+            <BigPoster
               key={tv.id}
               id={tv.id}
               imageUrl={tv.poster_path}
@@ -31,12 +31,12 @@ const TVPresenter = ({ airingToday, topRated, popular, error, loading }) =>
               year={tv.first_air_date.substring(0, 4)}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {topRated && topRated.length > 0 && (
-        <Section title={"トップレートフィルム"}>
+        <MainSection title={"トップレートフィルム"}>
           {topRated.map(tv => (
-            <Poster
+            <BigPoster
               key={tv.id}
               id={tv.id}
               imageUrl={tv.poster_path}
@@ -45,12 +45,12 @@ const TVPresenter = ({ airingToday, topRated, popular, error, loading }) =>
               year={tv.first_air_date.substring(0, 4)}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {popular && popular.length > 0 && (
-        <Section title={"人気の放送"}>
+        <MainSection title={"人気の放送"}>
           {popular.map(tv => (
-            <Poster
+            <BigPoster
               key={tv.id}
               id={tv.id}
               imageUrl={tv.poster_path}
@@ -59,7 +59,7 @@ const TVPresenter = ({ airingToday, topRated, popular, error, loading }) =>
               year={tv.first_air_date.substring(0, 4)}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {error && <Error color="#1071ff" text={error} />}
     </Container>

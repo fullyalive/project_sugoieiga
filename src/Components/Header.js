@@ -30,7 +30,6 @@ const ALink = styled(Link)``;
 export default withRouter(({ location: { pathname } }) => (
   // withRouter를 통해 컴포넌트에 접근해 props를 얻어낸다.
   <Header>
-    {/* {console.log(props)} */}
     <List>
       <Item current={pathname === "/"}>
         <ALink to="/">フィルム</ALink>

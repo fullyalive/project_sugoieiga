@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
+import { SubSection } from "Components/Section";
+import { ThumbPoster } from "Components/Poster";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -131,9 +131,9 @@ const DetailPresenter = ({
         </Data>
       </Content>
       {similar && similar.length > 0 && (
-        <Section title="推薦作品">
+        <SubSection title="似たような映画">
           {similar.map(item => (
-            <Poster
+            <ThumbPoster
               key={item.id}
               id={item.id}
               imageUrl={item.poster_path}
@@ -146,33 +146,39 @@ const DetailPresenter = ({
                   ? item.release_date.substring(0, 4)
                   : item.first_air_date.substring(0, 4)
               }
+              movieType={item.release_date ? true : false}
             />
           ))}
-        </Section>
+        </SubSection>
       )}
       {recommendations && recommendations.length > 0 && (
-        <Section title="推薦作品">
+        <SubSection title="推薦作品">
           {recommendations.map(item => (
-            <Poster
+            <ThumbPoster
               key={item.id}
               id={item.id}
               imageUrl={item.poster_path}
-              title={item.original_title}
+              title={
+                item.original_title ? item.original_title : item.original_name
+              }
               rating={item.vote_average}
               year={
                 item.release_date
                   ? item.release_date.substring(0, 4)
                   : item.first_air_date.substring(0, 4)
               }
+              movieType={item.release_date ? true : false}
             />
           ))}
-        </Section>
+        </SubSection>
       )}
     </Container>
   );
 
 DetailPresenter.propTypes = {
   details: PropTypes.object,
+  similar: PropTypes.object,
+  recommendations: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

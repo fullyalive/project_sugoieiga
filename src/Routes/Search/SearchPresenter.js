@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
+import { MainSection } from "Components/Section";
+import { BigPoster } from "Components/Poster";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 
@@ -51,9 +51,9 @@ const SearchPresenter = ({
     ) : (
       <>
         {movieResults && movieResults.length > 0 && (
-          <Section title="映画検索結果">
+          <MainSection title="映画検索結果">
             {movieResults.map(movie => (
-              <Poster
+              <BigPoster
                 key={movie.id}
                 id={movie.id}
                 imageUrl={movie.poster_path}
@@ -63,12 +63,12 @@ const SearchPresenter = ({
                 isMovie={true}
               />
             ))}
-          </Section>
+          </MainSection>
         )}
         {tvResults && tvResults.length > 0 && (
-          <Section title="放送検索結果">
+          <MainSection title="放送検索結果">
             {tvResults.map(tv => (
-              <Poster
+              <BigPoster
                 key={tv.id}
                 id={tv.id}
                 imageUrl={tv.poster_path}
@@ -77,7 +77,7 @@ const SearchPresenter = ({
                 year={tv.first_air_date.substring(0, 4)}
               />
             ))}
-          </Section>
+          </MainSection>
         )}
         {error && <Error color="#1071ff" text={error} />}
         {tvResults &&

@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
+import { MainSection } from "Components/Section";
+import { BigPoster } from "Components/Poster";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 
@@ -27,64 +27,64 @@ const HomePresenter = ({
         <title>フィルムリスト | スゴイ映画</title>
       </Helmet>
       {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="現在上映中">
+        <MainSection title="現在上映中">
           {nowPlaying.map(movie => (
-            <Poster
+            <BigPoster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
-              isMovie={true}
+              movieType={true}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {upcoming && upcoming.length > 0 && (
-        <Section title="封切り予定のフィルム">
+        <MainSection title="封切り予定のフィルム">
           {upcoming.map(movie => (
-            <Poster
+            <BigPoster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
-              isMovie={true}
+              movieType={true}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {topRated && topRated.length > 0 && (
-        <Section title="トップレートフィルム">
+        <MainSection title="トップレートフィルム">
           {topRated.map(movie => (
-            <Poster
+            <BigPoster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
-              isMovie={true}
+              movieType={true}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {popular && popular.length > 0 && (
-        <Section title="人気のフィルム">
+        <MainSection title="人気のフィルム">
           {popular.map(movie => (
-            <Poster
+            <BigPoster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
-              isMovie={true}
+              movieType={true}
             />
           ))}
-        </Section>
+        </MainSection>
       )}
       {error && <Error color="#1071ff" text={error} />}
     </Container>
