@@ -7,8 +7,8 @@ import { SubSection } from "Components/Section";
 import { ThumbPoster } from "Components/Poster";
 
 const Container = styled.div`
-  height: calc(100vh - 50px);
   width: 100%;
+  height: calc(100vh - 50px);
   position: relative;
   padding: 50px;
 `;
@@ -28,20 +28,20 @@ const Backdrop = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
-  width: 100%;
   position: relative;
+  display: flex;
   z-index: 1;
+  width: 100%;
   height: 100%;
 `;
 
 const Cover = styled.div`
   width: 30%;
+  height: 100%;
+  border-radius: 5px;
   background-image: url(${props => props.bgImage});
   background-position: center center;
   background-size: cover;
-  height: 100%;
-  border-radius: 5px;
 `;
 
 const Data = styled.div`

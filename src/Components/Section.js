@@ -24,7 +24,10 @@ const Grid = styled.div`
 // SubSection styled-components
 
 const SubContainer = styled.div`
-  margin-top: 30px;
+  margin-top: 70px;
+  &:last-child {
+    margin-top: 30px
+  }
 `;
 
 const SubGrid = styled.div`
