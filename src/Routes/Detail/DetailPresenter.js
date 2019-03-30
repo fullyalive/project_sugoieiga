@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
+import Section from "Components/Section";
+import Poster from "Components/Poster";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -68,61 +70,109 @@ const Overview = styled.p`
   width: 50%;
 `;
 
-const DetailPresenter = ({ result, loading, error }) =>
+const DetailPresenter = ({
+  details,
+  similar,
+  recommendations,
+  loading,
+  error
+}) =>
   loading ? (
     <Loader />
   ) : (
     <Container>
       <Helmet>
         <title>
-          {result.original_title ? result.original_title : result.original_name}{" "} | スゴイ映画
+          {details.original_title
+            ? details.original_title
+            : details.original_name}{" "}
+          | スゴイ映画
         </title>
       </Helmet>
       <Backdrop
-        bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+        bgImage={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
       />
       <Content>
         <Cover
           bgImage={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+            details.poster_path
+              ? `https://image.tmdb.org/t/p/original${details.poster_path}`
               : require("../../Images/noPosterSmall.png")
           }
         />
         <Data>
           <Title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}
+            {details.original_title
+              ? details.original_title
+              : details.original_name}
           </Title>
           <ItemContainer>
             <Item>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date.substring(0, 4)}
+              {details.release_date
+                ? details.release_date.substring(0, 4)
+                : details.first_air_date.substring(0, 4)}
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.runtime ? result.runtime : result.episode_run_time[0]} min
+              {details.runtime ? details.runtime : details.episode_run_time[0]}{" "}
+              min
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.genres &&
-                result.genres.map((genre, index) =>
-                  index === result.genres.length - 1
+              {details.genres &&
+                details.genres.map((genre, index) =>
+                  index === details.genres.length - 1
                     ? genre.name
                     : `${genre.name} / `
                 )}
             </Item>
           </ItemContainer>
-          <Overview>{result.overview}</Overview>
+          <Overview>{details.overview}</Overview>
         </Data>
       </Content>
+      {similar && similar.length > 0 && (
+        <Section title="推薦作品">
+          {similar.map(item => (
+            <Poster
+              key={item.id}
+              id={item.id}
+              imageUrl={item.poster_path}
+              title={
+                item.original_title ? item.original_title : item.original_name
+              }
+              rating={item.vote_average}
+              year={
+                item.release_date
+                  ? item.release_date.substring(0, 4)
+                  : item.first_air_date.substring(0, 4)
+              }
+            />
+          ))}
+        </Section>
+      )}
+      {recommendations && recommendations.length > 0 && (
+        <Section title="推薦作品">
+          {recommendations.map(item => (
+            <Poster
+              key={item.id}
+              id={item.id}
+              imageUrl={item.poster_path}
+              title={item.original_title}
+              rating={item.vote_average}
+              year={
+                item.release_date
+                  ? item.release_date.substring(0, 4)
+                  : item.first_air_date.substring(0, 4)
+              }
+            />
+          ))}
+        </Section>
+      )}
     </Container>
   );
 
 DetailPresenter.propTypes = {
-  result: PropTypes.object,
+  details: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

@@ -8,8 +8,11 @@ export default class extends React.Component {
     const {
       location: { pathname }
     } = props;
+
     this.state = {
-      result: null,
+      details: null,
+      similar: null,
+      recommendations: null,
       error: null,
       loading: true,
       isMovie: pathname.includes("/movie/")
@@ -23,25 +26,42 @@ export default class extends React.Component {
       },
       history: { push }
     } = this.props;
-    const { isMovie } = this.state;
     const parsedId = parseInt(id);
     if (isNaN(parsedId)) {
       return push("/");
     }
-    let result = null;
+    const { isMovie } = this.state;
+    let details, similar, recommendations = null;
     try {
-      ({ data: result } = isMovie
+      ({ data: details } = isMovie
         ? await movieApi.getDetails(id)
         : await tvApi.getDetails(id));
+      ({
+        data: { results: similar }
+      } = isMovie ? await movieApi.similar(id) : await tvApi.similar(id));
+      ({
+        data: { results: recommendations }
+      } = isMovie
+        ? await movieApi.recommendations(id)
+        : await tvApi.recommendations(id));
     } catch {
       this.setState({ error: "情報の読み込みに失敗しました 😢" });
     } finally {
-      this.setState({ loading: false, result });
+      this.setState({ loading: false, details, similar, recommendations });
     }
   }
 
   render() {
-    const { result, error, loading } = this.state;
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    const { details, similar, recommendations, error, loading } = this.state;
+    console.log(details, 111, similar, 111, recommendations, 111)
+    return (
+      <DetailPresenter
+        details={details}
+        similar={similar}
+        recommendations={recommendations}
+        error={error}
+        loading={loading}
+      />
+    );
   }
 }
