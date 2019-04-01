@@ -3,6 +3,7 @@
 뭔가 일본스러운 UI/UX 영화 서비스 🐾
 - React
 - styled-components
+- [netlify deploy 🔗](https://hungry-bhaskara-f2994f.netlify.com/)
 
 ## Screens
 

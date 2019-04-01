@@ -132,7 +132,7 @@ const DetailPresenter = ({
       </Content>
       {similar && similar.length > 0 && (
         <SubSection title="似たような映画">
-          {similar.map(item => (
+          {similar.slice(0, 10).map(item => (
             <ThumbPoster
               key={item.id}
               id={item.id}
@@ -153,7 +153,7 @@ const DetailPresenter = ({
       )}
       {recommendations && recommendations.length > 0 && (
         <SubSection title="推薦作品">
-          {recommendations.map(item => (
+          {recommendations.slice(0, 10).map(item => (
             <ThumbPoster
               key={item.id}
               id={item.id}
@@ -177,8 +177,8 @@ const DetailPresenter = ({
 
 DetailPresenter.propTypes = {
   details: PropTypes.object,
-  similar: PropTypes.object,
-  recommendations: PropTypes.object,
+  similar: PropTypes.array,
+  recommendations: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

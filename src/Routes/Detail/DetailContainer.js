@@ -8,7 +8,6 @@ export default class extends React.Component {
     const {
       location: { pathname }
     } = props;
-    console.log(props);
     this.state = {
       details: null,
       similar: null,
@@ -60,8 +59,6 @@ export default class extends React.Component {
 
   render() {
     const { details, similar, recommendations, error, loading } = this.state;
-    console.log(similar);
-    console.log(recommendations);
     return (
       <DetailPresenter
         details={details}
