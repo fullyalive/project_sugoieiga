@@ -18,7 +18,7 @@ export default class extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  showInformation = async () => {
     const {
       match: {
         params: { id }
@@ -46,16 +46,31 @@ export default class extends React.Component {
         ? await movieApi.recommendations(id)
         : await tvApi.recommendations(id));
     } catch {
-      this.setState({ error: "情報の読み込みに失敗しました 😢" });
+      this.setState({
+        error: "情報の読み込みに失敗しました 😢"
+      });
     } finally {
       this.setState({
-        loading: false,
         details,
         similar,
-        recommendations
+        recommendations,
+        loading: false
       });
     }
+  };
+
+
+  async componentDidUpdate() {
+    // if (prevProps.match.params.id !== this.props.match.params.id) {
+    //   this.setState({ loading: true });
+    // }
+    this.showInformation();
   }
+
+  async componentDidMount() {
+    this.showInformation();
+  }
+
 
   render() {
     const { details, similar, recommendations, error, loading } = this.state;

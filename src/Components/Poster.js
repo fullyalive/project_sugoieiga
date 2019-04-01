@@ -60,8 +60,6 @@ const Thumb = styled.div`
   transition: opacity 0.1s linear;
 `;
 
-// export default withRouter(({ location: { pathname } })
-
 export const BigPoster = ({
   id,
   imageUrl,
